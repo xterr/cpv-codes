@@ -51,6 +51,6 @@ class CpvCodesTest extends TestCase
     public function testCount(): void
     {
         $isoCodes = new CpvCodesFactory();
-        static::assertEquals(1, $isoCodes->getCodes()->count());
+        static::assertEquals(17777, $isoCodes->getCodes()->count());
     }
 }
