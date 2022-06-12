@@ -1,0 +1,34 @@
+{
+  "name": "xterr/php-cpvcodes",
+  "type": "library",
+  "license": "MIT",
+  "description": "CPV Codes",
+  "authors": [
+    {
+      "name": "Razvan Ceana",
+      "email": "razvan@ceana.ro"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Xterr\\CpvCodes\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Xterr\\CpvCodes\\Tests\\": [
+        "tests/"
+      ]
+    }
+  },
+  "require": {
+    "php": ">=7.1",
+    "ext-json": "*",
+    "doctrine/collections": "^1.6"
+  },
+  "require-dev": {
+    "symfony/translation": "^6.1",
+    "phpunit/phpunit": "^9.5",
+    "vimeo/psalm": "^4.23"
+  }
+}
