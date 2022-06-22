@@ -41,6 +41,11 @@ class CpvCode
      */
     private $parentCode;
 
+    /**
+     * @var string|null
+     */
+    private $codeVersion;
+
     public function getName(): string
     {
         return $this->name;
@@ -68,7 +73,7 @@ class CpvCode
 
     public function getCodeVersion(): string
     {
-        return implode('_', [$this->getCode(), $this->getVersion()]);
+        return $this->codeVersion;
     }
 
     public function getParentCode(): ?string

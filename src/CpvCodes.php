@@ -67,6 +67,7 @@ class CpvCodes implements \Iterator, \Countable
             $cpvCode->numericCode = $entry['numericCode'];
             $cpvCode->version = $entry['version'];
             $cpvCode->parentCode = $entry['parent'];
+            $cpvCode->codeVersion = implode('_', [$entry['code'], $entry['version']]);
 
             return $cpvCode;
         }, null, CpvCode::class);

@@ -36,6 +36,7 @@ class CpvCodesTest extends TestCase
         static::assertEquals('31532700', $cpvCode->getNumericCode());
         static::assertEquals('Lamp covers', $cpvCode->getName());
         static::assertEquals('315327', $cpvCode->getShortCode());
+        static::assertEquals('31532700-1_' . CpvCode::VERSION_2, $cpvCode->getCodeVersion());
 
         $cpvCode = $isoCodes->getCodes()->getByCodeAndVersion('03451300-9', CpvCode::VERSION_2);
         static::assertInstanceOf(CpvCode::class, $cpvCode);
