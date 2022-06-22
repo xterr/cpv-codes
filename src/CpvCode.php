@@ -2,9 +2,6 @@
 
 namespace Xterr\CpvCodes;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-
 class CpvCode
 {
     public const TYPE_SUPPLY = 1;
@@ -40,19 +37,9 @@ class CpvCode
     private $version = self::VERSION_2;
 
     /**
-     * @var CpvCode|null
+     * @var string|null
      */
-    private $parent;
-
-    /**
-     * @var Collection
-     */
-    private $children;
-
-    public function __construct()
-    {
-        $this->children = new ArrayCollection();
-    }
+    private $parentCode;
 
     public function getName(): string
     {
@@ -79,17 +66,14 @@ class CpvCode
         return $this->version;
     }
 
-    public function getParent(): ?CpvCode
+    public function getCodeVersion(): string
     {
-        return $this->parent;
+        return implode('_', [$this->getCode(), $this->getVersion()]);
     }
 
-    /**
-     * @return Collection|CpvCode[]
-     */
-    public function getChildren(): Collection
+    public function getParentCode(): ?string
     {
-        return $this->children;
+        return $this->parentCode;
     }
 
     public function getShortCode(): string

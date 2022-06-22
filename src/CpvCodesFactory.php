@@ -26,4 +26,9 @@ class CpvCodesFactory
     {
         return new CpvCodes($this->baseDirectory, $this->translator);
     }
+
+    public function getMappings(): CpvCodeMappings
+    {
+        return new CpvCodeMappings($this->baseDirectory);
+    }
 }
