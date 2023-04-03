@@ -2,9 +2,15 @@
 
 namespace Xterr\CpvCodes;
 
+use Closure;
+use Countable;
+use Iterator;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class CpvCodes implements \Iterator, \Countable
+/**
+ * @template-implements Iterator<int, CpvCode>
+ */
+class CpvCodes implements Iterator, Countable
 {
     /**
      * @var string
@@ -59,7 +65,7 @@ class CpvCodes implements \Iterator, \Countable
 
     protected function arrayToEntry(array $entry): CpvCode
     {
-        $closure = \Closure::bind(static function () use ($entry) {
+        $closure = Closure::bind(static function () use ($entry) {
             $cpvCode = new CpvCode();
             $cpvCode->name = $entry['name'];
             $cpvCode->code = $entry['code'];
@@ -82,6 +88,9 @@ class CpvCodes implements \Iterator, \Countable
         return count($this->data);
     }
 
+    /**
+     * @return Array<int, CpvCode>
+     */
     public function toArray(): array
     {
         return iterator_to_array($this);
@@ -93,7 +102,8 @@ class CpvCodes implements \Iterator, \Countable
             return;
         }
 
-        $this->data = json_decode(file_get_contents($this->baseDirectory . DIRECTORY_SEPARATOR . 'cpvCodes.json'), true);
+        $this->data = json_decode(file_get_contents($this->baseDirectory . DIRECTORY_SEPARATOR .
+                                                    'cpvCodes.json'), true);
     }
 
     private function _find(string $key, $value): ?CpvCode
@@ -112,7 +122,9 @@ class CpvCodes implements \Iterator, \Countable
         $this->_loadData();
 
         foreach ($this->data as $entry) {
-            $this->index['code_version'][implode('_', [$entry['code'], $entry['version']])] = $this->arrayToEntry($entry);
+            $this->index['code_version'][implode('_', [
+                $entry['code'], $entry['version'],
+            ])] = $this->arrayToEntry($entry);
         }
     }
 }

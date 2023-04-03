@@ -71,7 +71,7 @@ class CpvCode
         return $this->version;
     }
 
-    public function getCodeVersion(): string
+    public function getCodeVersion(): ?string
     {
         return $this->codeVersion;
     }
@@ -111,22 +111,22 @@ class CpvCode
         return substr($this->getShortCode(), 0, 4);
     }
 
-    public function isClass()
+    public function isClass(): bool
     {
         return strlen($this->getShortCode()) === 4;
     }
 
-    public function getCategory()
+    public function getCategory(): string
     {
         return substr($this->getShortCode(), 0, 5);
     }
 
-    public function isCategory()
+    public function isCategory(): bool
     {
         return strlen($this->getShortCode()) >= 5;
     }
 
-    public function isSubcategory()
+    public function isSubcategory(): bool
     {
         return strlen($this->getShortCode()) > 5;
     }
